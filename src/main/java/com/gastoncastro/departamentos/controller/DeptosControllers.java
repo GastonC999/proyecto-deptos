@@ -30,4 +30,8 @@ public class DeptosControllers {
         return new ResponseEntity<List<Departamento>> (deptosService.getDeptos(), HttpStatus.OK);
     }
 
+    @PutMapping(value= "/{id}")
+    public ResponseEntity<Departamento> updateUser(@PathVariable("id") long id, @RequestBody Departamento departamento){
+        return new ResponseEntity<Departamento>(deptosService.UpdateDepto(departamento, departamento.getId()), HttpStatus.OK);
+    }
 }

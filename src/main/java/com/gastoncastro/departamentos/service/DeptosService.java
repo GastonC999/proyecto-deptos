@@ -38,9 +38,13 @@ public class DeptosService {
                                 String.format("Departamento inexistente")));
     }
 
+    public Departamento UpdateDepto(Departamento departamento, long id) {
+        Departamento deptotoBeUpdate = getDeptoById(id);
+        deptotoBeUpdate.setNombre(departamento.getNombre());
+        deptotoBeUpdate.setDireccion(departamento.getDireccion());
+        deptotoBeUpdate.setNumero(departamento.getNumero());
+        deptotoBeUpdate.setPiso(departamento.getPiso());
+        return deptotoBeUpdate;
+    }
+
 }
-       /* public Departamento UpdateDepto(Departamento departamento, long id){
-        Departamento DeptotoBeUpdate = getDeptos();
-
-        }*/
-
