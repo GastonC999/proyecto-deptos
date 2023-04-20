@@ -7,6 +7,9 @@ public class departamento {
     String numero;
     String piso;
 
+    public departamento() {
+    }
+
     public departamento(String nombre, String direccion, String numero, String piso) {
         this.nombre = nombre;
         this.direccion = direccion;
