@@ -45,4 +45,9 @@ public class DeptosService {
         return deptotoBeUpdate;
     }
 
+    public void deleteDepto (long id){
+        Departamento deptoById = getDeptoById(id);
+        deptos.remove(deptoById);
+    }
+
 }

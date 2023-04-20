@@ -34,4 +34,10 @@ public class DeptosControllers {
     public ResponseEntity<Departamento> updateUser(@PathVariable("id") long id, @RequestBody Departamento departamento){
         return new ResponseEntity<Departamento>(deptosService.UpdateDepto(departamento, departamento.getId()), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDepto(@PathVariable("id") long id){
+        deptosService.deleteDepto(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
