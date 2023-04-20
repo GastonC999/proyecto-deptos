@@ -5,9 +5,7 @@ import com.gastoncastro.departamentos.service.DeptosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +15,14 @@ public class DeptosControllers {
 
     @Autowired
     private DeptosService deptosService;
+
+    @PostMapping
+    public ResponseEntity<Departamento> CreateDepto (@RequestBody Departamento departamento){
+        return new ResponseEntity<Departamento>(deptosService.CreateDepto(departamento),
+        HttpStatus.CREATED);
+    }
+
+
     @GetMapping
     public ResponseEntity<List<Departamento>> getDeptos(){
         return new ResponseEntity<List<Departamento>> (deptosService.getDeptos(), HttpStatus.OK);

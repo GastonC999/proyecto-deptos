@@ -2,11 +2,11 @@ package com.gastoncastro.departamentos.modelo;
 
 public class Departamento {
 
-    String nombre;
-    String direccion;
-    String numero;
-    String piso;
-
+   private String nombre;
+    private String direccion;
+    private  String numero;
+    private  String piso;
+    private   Long  id;
     public Departamento() {
     }
 
@@ -15,6 +15,7 @@ public class Departamento {
         this.direccion = direccion;
         this.numero = numero;
         this.piso = piso;
+        this.id = id;
     }
 
     public String getNombre() {
@@ -49,13 +50,22 @@ public class Departamento {
         this.piso = piso;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "departamento{" +
+        return "Departamento{" +
                 "nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", numero='" + numero + '\'' +
                 ", piso='" + piso + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
