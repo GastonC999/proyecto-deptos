@@ -25,7 +25,7 @@ public class DeptosService {
         deptos.add(departamento);
         return departamento;
     }
-
+    
     public List<Departamento> getDeptos() {
         return deptos;
     }
