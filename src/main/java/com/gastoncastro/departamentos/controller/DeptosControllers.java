@@ -21,8 +21,10 @@ public class DeptosControllers {
         return new ResponseEntity<Departamento>(deptosService.CreateDepto(departamento),
         HttpStatus.CREATED);
     }
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Departamento> getDeptoById(@PathVariable("id") long id){
+        return new ResponseEntity<Departamento>(deptosService.getDeptoById(id), HttpStatus.OK);
+    }
     @GetMapping
     public ResponseEntity<List<Departamento>> getDeptos(){
         return new ResponseEntity<List<Departamento>> (deptosService.getDeptos(), HttpStatus.OK);

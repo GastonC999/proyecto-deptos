@@ -15,18 +15,32 @@ public class DeptosService {
 
     public Departamento CreateDepto(Departamento departamento) {
         if (deptos.stream().anyMatch(d ->
-                d.getDireccion().equals(departamento.getDireccion()))){
+                d.getDireccion().equals(departamento.getDireccion()))) {
             if (deptos.stream().anyMatch(d ->
                     d.getNumero().equals(departamento.getNumero()))) {
-                    throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    String.format("El departamento ya existe"));
-                }
+                throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        String.format("El departamento ya existe"));
             }
+        }
         deptos.add(departamento);
         return departamento;
     }
 
-        public List<Departamento> getDeptos () {
-            return deptos;
-        }
+    public List<Departamento> getDeptos() {
+        return deptos;
     }
+
+    public Departamento getDeptoById(long id) {
+        return deptos.stream().filter(d ->
+                        d.getId().equals(id)).findAny()
+                .orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                String.format("Departamento inexistente")));
+    }
+
+}
+       /* public Departamento UpdateDepto(Departamento departamento, long id){
+        Departamento DeptotoBeUpdate = getDeptos();
+
+        }*/
+
