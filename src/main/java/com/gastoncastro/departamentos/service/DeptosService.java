@@ -1,18 +1,18 @@
 package com.gastoncastro.departamentos.service;
 
-import com.gastoncastro.departamentos.modelo.departamento;
+import com.gastoncastro.departamentos.modelo.Departamento;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class deptosService {
+public class DeptosService {
 
-    private List<departamento> deptos = new ArrayList<>();
+    private List<Departamento> deptos = new ArrayList<>();
 
 
-    public List<departamento> getDeptos(){
+    public List<Departamento> getDeptos(){
         return deptos;
     }
 }

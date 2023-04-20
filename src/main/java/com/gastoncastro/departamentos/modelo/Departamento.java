@@ -1,16 +1,16 @@
 package com.gastoncastro.departamentos.modelo;
 
-public class departamento {
+public class Departamento {
 
     String nombre;
     String direccion;
     String numero;
     String piso;
 
-    public departamento() {
+    public Departamento() {
     }
 
-    public departamento(String nombre, String direccion, String numero, String piso) {
+    public Departamento(String nombre, String direccion, String numero, String piso) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.numero = numero;
