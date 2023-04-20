@@ -21,11 +21,17 @@ public class DeptosControllers {
         return new ResponseEntity<Departamento>(deptosService.CreateDepto(departamento),
         HttpStatus.CREATED);
     }
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Departamento> getDeptoById(@PathVariable("id") long id){
+        return new ResponseEntity<Departamento>(deptosService.getDeptoById(id), HttpStatus.OK);
+    }
     @GetMapping
     public ResponseEntity<List<Departamento>> getDeptos(){
         return new ResponseEntity<List<Departamento>> (deptosService.getDeptos(), HttpStatus.OK);
     }
 
+    @PutMapping(value= "/{id}")
+    public ResponseEntity<Departamento> updateUser(@PathVariable("id") long id, @RequestBody Departamento departamento){
+        return new ResponseEntity<Departamento>(deptosService.UpdateDepto(departamento, departamento.getId()), HttpStatus.OK);
+    }
 }
