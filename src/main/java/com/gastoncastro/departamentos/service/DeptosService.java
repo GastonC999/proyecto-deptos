@@ -25,11 +25,9 @@ public class DeptosService {
         deptos.add(departamento);
         return departamento;
     }
-    
     public List<Departamento> getDeptos() {
         return deptos;
     }
-
     public Departamento getDeptoById(long id) {
         return deptos.stream().filter(d ->
                         d.getId().equals(id)).findAny()
