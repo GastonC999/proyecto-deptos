@@ -1,12 +1,19 @@
 package com.gastoncastro.departamentos.modelo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="departamentos")
 public class Departamento {
 
-   private String nombre;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private   Long  id;
+    private String nombre;
     private String direccion;
     private  String numero;
     private  String piso;
-    private   Long  id;
+
     public Departamento() {
     }
 
