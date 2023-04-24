@@ -1,4 +1,10 @@
 package com.gastoncastro.departamentos.repositories;
 
-public interface CRUDRepository {
+import java.util.List;
+
+public interface CRUDRepository<T> {
+    List<T> listar();
+    T porId(Long id);
+    void guardar(T t);
+    void eliminar(Long id);
 }
