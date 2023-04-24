@@ -8,11 +8,11 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private   Long  id;
-    private String nombre;
-    private String direccion;
-    private  String numero;
-    private  String piso;
+    Long  id;
+     String nombre;
+     String direccion;
+      String numero;
+      String piso;
 
     public Departamento() {
     }
@@ -22,7 +22,6 @@ public class Departamento {
         this.direccion = direccion;
         this.numero = numero;
         this.piso = piso;
-        this.id = id;
     }
 
     public String getNombre() {
@@ -55,14 +54,6 @@ public class Departamento {
 
     public void setPiso(String piso) {
         this.piso = piso;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
