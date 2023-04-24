@@ -3,13 +3,17 @@ package com.gastoncastro.departamentos.util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service
 public class Jpautil {
     private static final EntityManagerFactory entityManagerFactory = buildEntityManagerFactory();
     private static EntityManagerFactory buildEntityManagerFactory(){
         return Persistence.createEntityManagerFactory("proyectoDeptos");
     }
-    public static EntityManager getEntityManager(){
+   @Bean
+    public static EntityManager getEntityManagerFactory(){
         return entityManagerFactory.createEntityManager();
     }
 
