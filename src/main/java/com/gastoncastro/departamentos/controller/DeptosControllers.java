@@ -17,17 +17,17 @@ public class DeptosControllers {
     private DeptosService deptosService;
 
     @PostMapping
-    public ResponseEntity<Departamento> CreateDepto (@RequestBody Departamento departamento){
-        return new ResponseEntity<Departamento>(deptosService.CreateDepto(departamento),
+    public ResponseEntity<Departamento> guardarCandidato (@RequestBody Departamento departamento){
+        return new ResponseEntity<Departamento>(deptosService.guardar(departamento),
         HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Departamento> getDeptoById(@PathVariable("id") long id){
-        return new ResponseEntity<Departamento>(deptosService.getDeptoById(id), HttpStatus.OK);
+        return new ResponseEntity<Departamento>(deptosService.porId(id), HttpStatus.OK);
     }
     @GetMapping
     public ResponseEntity<List<Departamento>> getDeptos(){
-        return new ResponseEntity<List<Departamento>> (deptosService.getDeptos(), HttpStatus.OK);
+        return new ResponseEntity<List<Departamento>> (deptosService.getListEntidades(), HttpStatus.OK);
     }
 
     @PutMapping(value= "/{id}")
