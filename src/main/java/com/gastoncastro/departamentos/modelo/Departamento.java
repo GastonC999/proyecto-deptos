@@ -2,6 +2,8 @@ package com.gastoncastro.departamentos.modelo;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name="departamentos")
 public class Departamento {
@@ -62,6 +64,19 @@ public class Departamento {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Departamento departamento = (Departamento) o;
+        return Objects.equals(id, departamento.id) && Objects.equals(nombre, departamento.nombre) && Objects.equals(direccion, departamento.direccion) && Objects.equals(numero, departamento.numero) && Objects.equals(piso, departamento.piso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, direccion, numero, piso);
     }
 
     @Override
