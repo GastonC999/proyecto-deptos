@@ -1,4 +1,4 @@
-package com.gastoncastro.departamentos.util;
+package com.gastoncastro.departamentos.service;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
