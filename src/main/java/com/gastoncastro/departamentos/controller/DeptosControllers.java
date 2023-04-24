@@ -2,6 +2,7 @@ package com.gastoncastro.departamentos.controller;
 
 import com.gastoncastro.departamentos.modelo.Departamento;
 import com.gastoncastro.departamentos.service.DeptosService;
+import jakarta.ws.rs.QueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class DeptosControllers {
         return new ResponseEntity<Departamento>(deptosService.porId(id), HttpStatus.OK);
     }
     @GetMapping
-    public ResponseEntity<List<Departamento>> getDeptos(){
-        return new ResponseEntity<List<Departamento>> (deptosService.getListEntidades(), HttpStatus.OK);
+    public ResponseEntity<List<Departamento>> getDeptos(@QueryParam("departamentos") String departamento){
+        return new ResponseEntity<List<Departamento>> (deptosService.getListEntidades(departamento), HttpStatus.OK);
     }
 
     @PutMapping(value= "/{id}")

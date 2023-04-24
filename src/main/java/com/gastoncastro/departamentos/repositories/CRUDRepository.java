@@ -1,7 +1,9 @@
 package com.gastoncastro.departamentos.repositories;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface CRUDRepository<T> {
     List<T> listar();
     T porId(Long id);

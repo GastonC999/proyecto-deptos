@@ -3,6 +3,7 @@ package com.gastoncastro.departamentos.service;
 import com.gastoncastro.departamentos.modelo.Departamento;
 import com.gastoncastro.departamentos.repositories.CRUDRepository;
 import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,12 +14,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class DeptosService implements EntityService<Departamento> {
-
+    @Autowired
     private EntityManager em;
+    @Autowired
     private CRUDRepository<Departamento> repository;
 
+    @Override
     public List<Departamento> getListEntidades(String nombreSubstring){
-        if (nombreSubstring != null){
+        if (nombreSubstring!=null){
             return repository.listar().stream()
                     .filter(d -> (d.getDireccion() + " " + d.getNumero()).startsWith(nombreSubstring))
                     .collect(Collectors.toList());
@@ -30,6 +33,7 @@ public class DeptosService implements EntityService<Departamento> {
     public List<Departamento> getListEntidades() {
         return repository.listar();
     }
+
     @Override
     public Departamento porId(Long id) {
         return repository.listar().stream().filter(d ->
@@ -38,7 +42,7 @@ public class DeptosService implements EntityService<Departamento> {
                         new ResponseStatusException(HttpStatus.NOT_FOUND,
                                 String.format("Departamento inexistente")));
     }
-
+    @Override
     public Departamento guardar(Departamento departamento) {
         if (repository.listar().stream().anyMatch(d ->
                 d.getDireccion().equals(departamento.getDireccion()))) {

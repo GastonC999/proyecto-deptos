@@ -19,7 +19,8 @@ public class Departamento {
     public Departamento() {
     }
 
-    public Departamento(String nombre, String direccion, String numero, String piso) {
+    public Departamento(Long id, String nombre, String direccion, String numero, String piso) {
+        this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.numero = numero;
