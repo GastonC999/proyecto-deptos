@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Jpautil {
+public class JpaUtil {
     private static final EntityManagerFactory entityManagerFactory = buildEntityManagerFactory();
     private static EntityManagerFactory buildEntityManagerFactory(){
         return Persistence.createEntityManagerFactory("proyectoDeptos");
