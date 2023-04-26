@@ -1,25 +1,26 @@
 package com.gastoncastro.departamentos.service;
 
-import com.gastoncastro.departamentos.modelo.Departamento;
-import com.gastoncastro.departamentos.repositories.CRUDRepository;
+import com.gastoncastro.departamentos.modelo.entity.Departamento;
+import com.gastoncastro.departamentos.modelo.dto.DepartamentoDto;
+import com.gastoncastro.departamentos.repositories.DepartamentoRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DeptosService implements EntityService<Departamento> {
+public class DeptosService implements EntityService<DepartamentoDto, Departamento> {
+
     @Autowired
     private EntityManager em;
-    @Autowired
-    private CRUDRepository<Departamento> repository;
 
-    @Override
+    @Autowired
+    private DepartamentoRepository repository;
+
     public List<Departamento> getListEntidades(String nombreSubstring){
         if (nombreSubstring!=null){
             return repository.listar().stream()
@@ -43,11 +44,23 @@ public class DeptosService implements EntityService<Departamento> {
                                 String.format("Departamento inexistente")));
     }
     @Override
-    public Departamento guardar(Departamento departamento) {
-        if (repository.listar().stream().anyMatch(d ->
-                d.getDireccion().equals(departamento.getDireccion()))) {
-            if (repository.listar().stream().anyMatch(d ->
-                    d.getNumero().equals(departamento.getNumero()))) {
+    public Departamento guardar(DepartamentoDto departamentoDto) {
+        //log info
+        Departamento departamento = new Departamento();
+        departamento.setNombre(departamentoDto.getNombre());
+        departamento.setDireccion(departamentoDto.getDireccion());
+        departamento.setNumero(departamentoDto.getNumero());
+        departamento.setPiso(departamentoDto.getPiso());
+
+        String nombre = departamento.getDireccion();
+        String nombre2 = departamento.getNumero();
+        boolean repo = repository.listar().stream().anyMatch(d ->
+                d.getDireccion().equals(nombre));
+        boolean numeros = repository.listar().stream().anyMatch(d ->
+                d.getNumero().equals(nombre2));
+        if (repo) {
+            if (numeros) {
+                //aca hiria un log de tipo info
                 throw new ResponseStatusException(HttpStatus.CONFLICT,
                         String.format("El departamento ya existe"));
             }
@@ -56,21 +69,25 @@ public class DeptosService implements EntityService<Departamento> {
             em.getTransaction().begin();
             repository.guardar(departamento);
             em.getTransaction().commit();
+            //log debug porque vamos a ver el estado.
         }catch (Exception e){
+            //error
             em.getTransaction().rollback();
             e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    String.format("No se almaceno"));
         }
         return departamento;
     }
 
 
-    public Departamento UpdateDepto(Departamento departamento, long id) {
-        Departamento deptotoBeUpdate = porId(id);
-        deptotoBeUpdate.setNombre(departamento.getNombre());
-        deptotoBeUpdate.setDireccion(departamento.getDireccion());
-        deptotoBeUpdate.setNumero(departamento.getNumero());
-        deptotoBeUpdate.setPiso(departamento.getPiso());
-        return deptotoBeUpdate;
+    public Departamento updateDepto(Departamento departamento, long id) {
+        Departamento deptoToBeUpdate = porId(id);
+        deptoToBeUpdate.setNombre(departamento.getNombre());
+        deptoToBeUpdate.setDireccion(departamento.getDireccion());
+        deptoToBeUpdate.setNumero(departamento.getNumero());
+        deptoToBeUpdate.setPiso(departamento.getPiso());
+        return deptoToBeUpdate;
     }
 
 
