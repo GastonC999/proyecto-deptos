@@ -1,5 +1,6 @@
 package com.gastoncastro.departamentos.modelo;
 
+
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -10,11 +11,11 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long  id;
+     Long  id;
      String nombre;
      String direccion;
-      String numero;
-      String piso;
+     String numero;
+     String piso;
 
     public Departamento() {
     }
