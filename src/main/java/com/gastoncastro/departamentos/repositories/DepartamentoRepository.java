@@ -1,16 +1,15 @@
 package com.gastoncastro.departamentos.repositories;
 
-import com.gastoncastro.departamentos.modelo.Departamento;
-import com.gastoncastro.departamentos.service.EntityService;
+import com.gastoncastro.departamentos.modelo.entity.Departamento;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public class DepartamentoRepository implements CRUDRepository<Departamento>{
-
     @Autowired
     private EntityManager em;
 
@@ -24,10 +23,11 @@ public class DepartamentoRepository implements CRUDRepository<Departamento>{
         return em.find(Departamento.class,id);
     }
 
+
     @Override
     public void guardar(Departamento departamento) {
         if (departamento.getId() !=null && departamento.getId() > 0){
-        em.merge(departamento);
+            em.merge(departamento);
         }
         else{
             em.persist(departamento);
