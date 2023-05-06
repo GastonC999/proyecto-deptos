@@ -12,7 +12,8 @@ public class Departamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long  id;
-    private String nombre;
+    @ManyToOne
+    private Persona propietario;
     private String direccion;
     private String numero;
     private String piso;
@@ -20,20 +21,20 @@ public class Departamento {
     public Departamento() {
     }
 
-    public Departamento(Long id, String nombre, String direccion, String numero, String piso) {
+    public Departamento(Long id, Persona propietario, String direccion, String numero, String piso) {
         this.id = id;
-        this.nombre = nombre;
+        this.propietario = propietario;
         this.direccion = direccion;
         this.numero = numero;
         this.piso = piso;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Persona getPropietario() {
+        return propietario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPropietario(Persona propietario) {
+        this.propietario = propietario;
     }
 
     public String getDireccion() {
@@ -73,18 +74,18 @@ public class Departamento {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Departamento departamento = (Departamento) o;
-        return Objects.equals(id, departamento.id) && Objects.equals(nombre, departamento.nombre) && Objects.equals(direccion, departamento.direccion) && Objects.equals(numero, departamento.numero) && Objects.equals(piso, departamento.piso);
+        return Objects.equals(id, departamento.id) && Objects.equals(propietario, departamento.propietario) && Objects.equals(direccion, departamento.direccion) && Objects.equals(numero, departamento.numero) && Objects.equals(piso, departamento.piso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, direccion, numero, piso);
+        return Objects.hash(id, propietario, direccion, numero, piso);
     }
 
     @Override
     public String toString() {
         return "Departamento{" +
-                "nombre='" + nombre + '\'' +
+                "nombre='" + propietario + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", numero='" + numero + '\'' +
                 ", piso='" + piso + '\'' +
