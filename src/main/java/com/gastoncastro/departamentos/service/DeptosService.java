@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import org.apache.log4j.Logger;
+
 import java.util.stream.Collectors;
 
 @Service
 public class DeptosService implements EntityService<DepartamentoDto, Departamento> {
 
+    private static Logger log = Logger.getLogger(DeptosService.class);
     @Autowired
     private EntityManager em;
 
@@ -45,7 +48,9 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
     }
     @Override
     public Departamento guardar(DepartamentoDto departamentoDto) {
-        //log info
+
+        log.info("Comienza el metodo guardar");
+
         Departamento departamento = new Departamento();
         departamento.setNombre(departamentoDto.getNombre());
         departamento.setDireccion(departamentoDto.getDireccion());
@@ -60,7 +65,7 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
                 d.getNumero().equals(nombre2));
         if (repo) {
             if (numeros) {
-                //aca hiria un log de tipo info
+                log.info("El departamento ya existe");
                 throw new ResponseStatusException(HttpStatus.CONFLICT,
                         String.format("El departamento ya existe"));
             }
@@ -71,7 +76,7 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
             em.getTransaction().commit();
             //log debug porque vamos a ver el estado.
         }catch (Exception e){
-            //error
+            log.error("No se cargan los datos, hace rollback");
             em.getTransaction().rollback();
             e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
