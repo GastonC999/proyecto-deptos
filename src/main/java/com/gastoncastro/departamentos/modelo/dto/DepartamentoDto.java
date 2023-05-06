@@ -1,14 +1,16 @@
 package com.gastoncastro.departamentos.modelo.dto;
 
+import com.gastoncastro.departamentos.modelo.entity.Persona;
+
 public class DepartamentoDto {
 
-    private String nombre;
+    private Persona propietario;
     private String direccion;
     private String numero;
     private String piso;
 
-    public String getNombre() {
-        return nombre;
+    public Persona getPropietario() {
+        return propietario;
     }
 
     public String getDireccion() {
