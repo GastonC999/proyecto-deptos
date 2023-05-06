@@ -21,15 +21,15 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
     @Autowired
     private DepartamentoRepository repository;
 
-    public List<Departamento> getListEntidades(String nombreSubstring){
-        if (nombreSubstring!=null){
-            return repository.listar().stream()
-                    .filter(d -> (d.getDireccion() + " " + d.getNumero()).startsWith(nombreSubstring))
-                    .collect(Collectors.toList());
-        }else {
-            return repository.listar();
-        }
-    }
+//    public List<Departamento> getListEntidades(String nombreSubstring){
+//        if (nombreSubstring!=null){
+//            return repository.listar().stream()
+//                    .filter(d -> (d.getDireccion() + " " + d.getNumero()).startsWith(nombreSubstring))
+//                    .collect(Collectors.toList());
+//        }else {
+//            return repository.listar();
+//        }
+//    }
 
     public List<Departamento> getListEntidades() {
         return repository.listar();
