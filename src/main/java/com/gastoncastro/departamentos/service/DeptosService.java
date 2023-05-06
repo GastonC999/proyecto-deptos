@@ -4,20 +4,23 @@ import com.gastoncastro.departamentos.modelo.entity.Departamento;
 import com.gastoncastro.departamentos.modelo.dto.DepartamentoDto;
 import com.gastoncastro.departamentos.repositories.DepartamentoRepository;
 import jakarta.persistence.EntityManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import org.apache.log4j.Logger;
 
-import java.util.stream.Collectors;
+
+
+
 
 @Service
 public class DeptosService implements EntityService<DepartamentoDto, Departamento> {
 
-    private static Logger log = Logger.getLogger(DeptosService.class);
+    private static final Logger log = LogManager.getLogger(DeptosService.class);
     @Autowired
     private EntityManager em;
 
@@ -52,7 +55,7 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
         log.info("Comienza el metodo guardar");
 
         Departamento departamento = new Departamento();
-        departamento.setNombre(departamentoDto.getNombre());
+        departamento.setPropietario(departamentoDto.getPropietario());
         departamento.setDireccion(departamentoDto.getDireccion());
         departamento.setNumero(departamentoDto.getNumero());
         departamento.setPiso(departamentoDto.getPiso());
@@ -74,7 +77,7 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
             em.getTransaction().begin();
             repository.guardar(departamento);
             em.getTransaction().commit();
-            //log debug porque vamos a ver el estado.
+            log.debug("Aqui puede pasar un error");
         }catch (Exception e){
             log.error("No se cargan los datos, hace rollback");
             em.getTransaction().rollback();
@@ -88,7 +91,7 @@ public class DeptosService implements EntityService<DepartamentoDto, Departament
 
     public Departamento updateDepto(Departamento departamento, long id) {
         Departamento deptoToBeUpdate = porId(id);
-        deptoToBeUpdate.setNombre(departamento.getNombre());
+        deptoToBeUpdate.setPropietario(departamento.getPropietario());
         deptoToBeUpdate.setDireccion(departamento.getDireccion());
         deptoToBeUpdate.setNumero(departamento.getNumero());
         deptoToBeUpdate.setPiso(departamento.getPiso());
