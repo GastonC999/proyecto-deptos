@@ -3,9 +3,10 @@ package com.gastoncastro.departamentos.repositories;
 import com.gastoncastro.departamentos.modelo.entity.Persona;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class PersonaRepository implements CRUDRepository<Persona>{
 
     @Autowired
