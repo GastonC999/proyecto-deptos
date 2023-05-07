@@ -23,13 +23,14 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(Long id, String nombre, String apellido, Date fechaNacimiento, TipoDni tipoDni, Long dni) {
+    public Persona(Long id, String nombre, String apellido, Date fechaNacimiento, TipoDni tipoDni, Long dni, List<Departamento> departamentos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.tipoDni = tipoDni;
         this.dni = dni;
+        this.departamentos = departamentos;
     }
 
     public Long getId() {
@@ -78,6 +79,14 @@ public class Persona {
 
     public void setDni(Long dni) {
         this.dni = dni;
+    }
+
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
     }
 
     @Override
