@@ -50,8 +50,11 @@ public class PersonaService implements EntityService<PersonaDto, Persona> {
         persona.setTipoDni(personaDto.getTipoDni());
         persona.setDni(personaDto.getDni());
 
-        if (repository.listar().stream().anyMatch(p ->
-                p.getDni().equals(persona.getDni()))){
+        Long perDni = persona.getDni();
+        boolean metodo = repository.listar().stream().anyMatch(p ->
+                p.getDni().equals(perDni));
+
+        if (metodo){
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     String.format("La persona ya existe"));
     }
